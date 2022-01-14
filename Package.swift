@@ -23,9 +23,15 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "SMTPKitten",
-            dependencies: ["NIO", "NIOSSL"]),
+            dependencies: [
+                .product(name: "NIO", package: "swift-nio"),
+                .product(name: "NIOSSL", package: "swift-nio-ssl")
+            ]),
         .testTarget(
             name: "SMTPKittenTests",
-            dependencies: ["SMTPKitten"]),
+            dependencies: [
+                .product(name: "NIO", package: "swift-nio"),
+                .product(name: "NIOSSL", package: "swift-nio-ssl")
+            ]),
     ]
 )
